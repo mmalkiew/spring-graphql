@@ -4,4 +4,5 @@ type Sample {
 
 type Query {
     findAllSamples: [Sample]!
+    findSampleByName(name: String!): Sample
 }

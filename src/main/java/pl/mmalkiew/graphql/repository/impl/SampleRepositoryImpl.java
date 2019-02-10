@@ -4,17 +4,38 @@ import org.springframework.stereotype.Service;
 import pl.mmalkiew.graphql.model.Sample;
 import pl.mmalkiew.graphql.repository.SampleRepository;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SampleRepositoryImpl implements SampleRepository {
 
+    private static final List<Sample> SAMPLES = new ArrayList<>();
+    static {
+        Sample sample = new Sample();
+        sample.setName("test");
+
+        SAMPLES.add(sample);
+
+        Sample other = new Sample();
+        other.setName("other");
+
+        SAMPLES.add(other);
+
+    }
+
     @Override
     public List<Sample> findAllSamples() {
-        Sample sample = new Sample();
-        sample.setName("TEST");
-        return Collections.singletonList(sample);
+        return SAMPLES;
+    }
+
+    @Override
+    public Optional<Sample> findSampleByName(String name) {
+        return SAMPLES.stream()
+                      .filter(sample -> sample.getName().equals(name))
+                      .findFirst();
     }
 }
 

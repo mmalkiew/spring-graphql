@@ -6,6 +6,7 @@ import pl.mmalkiew.graphql.model.Sample;
 import pl.mmalkiew.graphql.repository.SampleRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class QueryResolver implements GraphQLQueryResolver {
@@ -18,5 +19,9 @@ public class QueryResolver implements GraphQLQueryResolver {
 
     public List<Sample> findAllSamples() {
         return sampleRepository.findAllSamples();
+    }
+
+    public Optional<Sample> findSampleByName(String name) {
+        return sampleRepository.findSampleByName(name);
     }
 }
