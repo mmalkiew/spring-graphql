@@ -2,7 +2,12 @@ type Sample {
     name: String!
 }
 
+input SampleSearchCriteria {
+    name: String
+}
+
 type Query {
     findAllSamples: [Sample]!
     findSampleByName(name: String!): Sample
+    findByCriteria(criteria: SampleSearchCriteria!): [Sample]!
 }
